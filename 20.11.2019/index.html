@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <ol>
-        <li>Na osnovu slike `navigation` napraviti html i stilizovati samo upotrebom css-a.</li>
-        <li>Napraviti custom checkbox na osnovu slika `checkboxStart` i `checkboxEnd`</li>
-        <li>Koju vrijednost ima a?
 
-            <!-- var a = 10;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <ol>
+    <li>Na osnovu slike `navigation` napraviti html i stilizovati samo upotrebom css-a.</li>
+    <li>Napraviti custom checkbox na osnovu slika `checkboxStart` i `checkboxEnd`</li>
+    <li>Koju vrijednost ima a?
+
+      <!--var a = 10;
             var x = (function() {
               var y = function() {
                 var a = 12;
@@ -21,20 +25,40 @@
                 alert(a);
               }
             })();
-            x(); -->
-        </li>
-        <li>
-            Napisi funkciju koja vraca faktorijal broja prosledjenog kao parametar. (e.g. function factorial(num) {})
-        </li>
-    </ol>
+            x(); --> a = 10
+    </li>
+    <li>
+      Napisi funkciju koja vraca faktorijal broja prosledjenog kao parametar. (e.g. function factorial(num) {})
+    </li>
+  </ol>
+  <!-- Pocetak zadatka broj 1 -->
+  <nav class="nav">
+    <ul class="navbar">
+      <li class="navbar-item">Home</li>
+      <li class="navbar-item">About</li>
+      <li class="dropdown navbar-item">Products
+        <ul class="dropdown-menu">
+          <li class="dropdown-item">Engineering</li>
+          <li class="dropdown-item">Telecom</li>
+          <li class="dropdown-item">Energy</li>
+          <li class="dropdown-item">Finance</li>
+          <li class="dropdown-item">Consultancy</li>
+        </ul>
+      </li>
+      <li class="navbar-item">Services</li>
+      <li class="navbar-item">Contacts</li>
+    </ul>
+  </nav>
+  <!-- Kraj -->
 
+  <!-- Pocetak zadatka broj 2 -->
+  <div class="checkbox">
+    <input class="checkbox-content" type="checkbox" >
+      <label for="checkbox-label">Alexx</label>
+  </div>
 
-    <!-- Pocetak zadatka broj 1 -->
-
-    <!-- Kraj -->
-
-    <!-- Pocetak zadatka broj 2 -->
-
-    <!-- Kraj -->
+  <!-- Kraj -->
+  <script src="app.js"></script>
 </body>
+
 </html>
