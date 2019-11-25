@@ -1,3 +1,18 @@
+ body {
+    background-color: black;
+}
+/* prvi zadatak */
+button {
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 15px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    background-color: rgb(24, 23, 23);
+    transition: 0.25s;
+}
 body {
     background-color: black;
 }
@@ -29,29 +44,43 @@ button {
 .fill {
     color: rgb(51, 163, 51);
     border: 2px solid rgb(51, 163, 51);
-    transition: background-position 1s;
-    background-image: linear-gradient(to bottom, black  50%, rgb(51, 163, 51)  50%);
+    transition: 1s;
+    background-image: linear-gradient(to top,  rgb(51, 163, 51)  50%, black  50%);
     background-size: 100% 200%;
 }
 
 .fill:hover {
     border: 2px solid rgb(102, 179, 102);
     color: rgb(199, 238, 198);
-    background-position: 0 -100%;
+    background-position: 0 100%;
+}
+
+.pulse {
+    color: rosybrown;
+    border: 2px solid rosybrown;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 
 .pulse:hover {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    -webkit-transform: scale(1);
     transform: scale(1);
+    -webkit-animation: pulse 1s;
     animation: pulse 1s;
     border: 2px solid orange;
     color: orange;
 }
 
+.pulse:before {
+    will-change: transform;
+}
 
 @keyframes pulse {
     0% {
-        transform: scale(0.90);
+        transform: scale(1);
         box-shadow: 0 0 0 0 rgba(192, 92, 25, 0.7);
     }
 
@@ -66,48 +95,115 @@ button {
     }
 }
 
+
+@-webkit-keyframes pulse {
+    0% {
+        transform: scale(0.90);
+        -webkit-transform: scale(0.90);
+        box-shadow: 0 0 0 0 rgba(192, 92, 25, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(243, 173, 43, 0.4);
+    }
+
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(240, 184, 63, 0.0);
+    }
+}
+
 /* Drugi zadatak  */
 
 .card3d {
-    width: 300px;
-    height: 160px;
-    border: 4px solid green;
-    margin: 80px 60px;
-    perspective: 600px;
+    position: relative;
+    -moz-perspective: 40em;
+    perspective: 40em;
+    display: grid;
+    -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
   }
-
-  .card3d .card3d-div {
-    position: relative;
-    width: 100%;
+  
+  .card3d-inside {
+    grid-area: 1 / 1;
+    height: 200px;
+    width: 400px;
+    -moz-transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    background: rgba(249, 198, 26, 0.88);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+    color: #000;
+    font-size: 60px;
+    font-weight: 900;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0 10px 30px -3px rgba(0,0,0,.1);
+  }
+  
+  p {
+    font-size: 60px;
+    font-weight: 900;
+  }
+  
+  .card3d-inside span {
+    background: #000;
+    line-height: 1;
+    color: rgba(249, 198, 26, 1);
+    padding: 0 5px;
+    display: inline-block;
+    -moz-transform: translate(-1px, 1px) scale(0.75);
+    transform: translate(-1px, 1px) scale(0.75);
+    -moz-transform-origin: right center;
+    transform-origin: right center;
+  }
+  
+  .card3d:before {
+    grid-area: 1 / 1;
+    content: '';
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
     height: 100%;
-    cursor: pointer;
-    transform-style: preserve-3d;
-}
-
-.card3d .card3d-div .card3d-inside {
-    position: absolute;
     width: 100%;
+    margin-top: -6px;
+    margin-left: -6px;
+    background: transparent;
+    -moz-transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    pointer-events: none;
+    border: 6px solid white;
+    box-sizing: content-box;
+  }
+  
+  
+  .card3d:hover > div,
+  .card3d:hover:before {
+      -moz-transform: none;
+      transform: none;
+  }
+  
+  
+  .card3d > div,
+  .card3d:before {
+    will-change: transform;
+    -moz-transition: .3s ;  
+    transition: .3s ;
+}
+  
+  html,
+  body {
     height: 100%;
-    color: black;
-    text-align: center;
-    font-weight: bold;
-    font-size: 24px;
-    background-color: rgba(238, 220, 54, 0.8);
-}
-
-.card3d .card3d-div .card3d-inside p span {
-    background-color: black;
-    color: rgb(202, 184, 21);
-}
-
-.card3d .card3d-div .card3d-inside p {
-    margin-top: 20%;
-}
-
-.card3d:hover .card3d-div .card3d-inside {
-    transform: rotateY(40deg);
-}
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+  }
 
 /* Treci zadatak */
 
@@ -188,3 +284,247 @@ button {
     font-size: 15px;
     color: rgb(212, 90, 90);
 }
+.raise {
+    color: orange;
+    border: 2px solid orange;
+}
+
+.raise:hover {
+    border: 2px solid rgb(235, 235, 122);
+    color: rgb(235, 235, 122);
+    box-shadow: 0 5px 12px rgb(235, 235, 122);
+    transform: translateY(-4px);
+}
+
+.fill {
+    color: rgb(51, 163, 51);
+    border: 2px solid rgb(51, 163, 51);
+    transition: 1s;
+    background-image: linear-gradient(to top,  rgb(51, 163, 51)  50%, black  50%);
+    background-size: 100% 200%;
+}
+
+.fill:hover {
+    border: 2px solid rgb(102, 179, 102);
+    color: rgb(199, 238, 198);
+    background-position: 0 100%;
+}
+
+.pulse {
+    color: rosybrown;
+    border: 2px solid rosybrown;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.pulse:hover {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+    border: 2px solid orange;
+    color: orange;
+}
+
+.pulse:before {
+    will-change: transform;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(192, 92, 25, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(243, 173, 43, 0.4);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(240, 184, 63, 0.0);
+    }
+}
+
+
+@-webkit-keyframes pulse {
+    0% {
+        transform: scale(0.90);
+        -webkit-transform: scale(0.90);
+        box-shadow: 0 0 0 0 rgba(192, 92, 25, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(243, 173, 43, 0.4);
+    }
+
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(240, 184, 63, 0.0);
+    }
+}
+
+/* Drugi zadatak  */
+
+.card3d {
+    position: relative;
+    -moz-perspective: 40em;
+    perspective: 40em;
+    display: grid;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+  
+.card3d-inside {
+    grid-area: 1 / 1;
+    height: 200px;
+    width: 400px;
+    -moz-transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    background: rgba(249, 198, 26, 0.88);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+    color: #000;
+    font-size: 70px;
+    font-weight: 900;
+    box-shadow: 0 10px 30px -3px rgba(0,0,0,.1);
+}
+  
+p {
+    font-size: 70px;
+    font-weight: 900;
+}
+
+.card3d-inside span {
+    background: black;
+    line-height: 1;
+    margin-left: 20px;
+    color: rgba(249, 198, 26, 1);
+    -moz-transform: translate(-1px, 1px) scale(0.75);
+    transform: translate(-1px, 1px) scale(0.75);
+}
+  
+.card3d:before {
+    grid-area: 1 / 1;
+    height: 100%;
+    width: 100%;
+    margin-top: -6px;
+    margin-left: -6px;
+    background: transparent;
+    -moz-transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    border: 6px solid white;
+}
+  
+  
+.card3d:hover > div,
+.card3d:hover:before {
+    -moz-transform: none;
+    transform: none;
+}
+  
+  
+.card3d > div,
+.card3d:before {
+    -moz-transition: .5s ;  
+    transition: .5s ;
+}
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+  }
+
+/* Treci zadatak */
+
+.card {
+    margin: 60px;
+    position:relative;
+    width: 300px;
+    height: 350px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+}
+.card:before, 
+.card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background: #fff;
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.card:hover:before{
+    transform: rotate(20deg);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+}
+.card:hover:after {
+    transform: rotate(10deg);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+}
+
+.card .img-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background: #222;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.card:hover .img-box {
+    bottom: 80px;
+}
+
+.card .img-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.card .details {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: 60px;
+    text-align: center;
+}
+
+.card .details h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: gray;
+}
+
+.card .details h2 span {
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(212, 90, 90);
+} 
