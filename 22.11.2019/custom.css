@@ -116,8 +116,8 @@ button {
     grid-area: 1 / 1;
     height: 200px;
     width: 400px;
-    -moz-transform: translateX(10px) rotateY(25deg) rotateX(10deg);
-    transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    -moz-transform: translate3d(10px, 0, 1px) rotateY(25deg) rotateX(10deg);
+    transform: translate3d(10px, 0, 1px) rotateY(25deg) rotateX(10deg);
     background: rgba(249, 198, 26, 0.88);
     display: flex;
     justify-content: flex-start;
@@ -142,8 +142,8 @@ p {
     color: rgba(249, 198, 26, 1);
     padding: 0 5px;
     display: inline-block;
-    -moz-transform: translate(-1px, 1px) scale(0.75);
-    transform: translate(-1px, 1px) scale(0.75);
+    -moz-transform: translate3d(-1px, 1px, 1px) scale(0.75);
+    transform: translate3d(-1px, 1px, 1px) scale(0.75);
     -moz-transform-origin: right center;
     transform-origin: right center;
   }
@@ -155,8 +155,8 @@ p {
     margin-top: -6px;
     margin-left: -6px;
     background: transparent;
-    -moz-transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
-    transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    -moz-transform: translate3d(-60px, 0, 1px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    transform: translate3d(-60px, 0, 1px) rotateY(-30deg) rotateX(15deg) scale(1.03);
     border: 6px solid white;
     content: '';
     -moz-backface-visibility: hidden;
