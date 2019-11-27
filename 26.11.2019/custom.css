@@ -1,0 +1,130 @@
+body {
+    background-color: rgb(219, 218, 218);
+    margin: 0;
+    padding: 0;
+    text-align: center; 
+}
+
+.window {
+    background-color: white;
+    text-align: left;
+    width: 420px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); 
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.window-dialog:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: rgb(46, 43, 43);
+	border-bottom: 0;
+	border-left: 10;
+	margin-left: 110px;
+	margin-bottom: -8px;
+}
+
+.window-dialog {
+    position: relative;
+    border-radius: 5px;
+    background-color: rgb(46, 43, 43);
+    color: white;
+    width: 80%;
+    height: 10%;
+    align-self: center;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.window-body {
+    position: relative;
+    width: 80%;
+    height: 60%;
+    align-self: center;
+    margin-left: 10%;
+    margin-top: 25px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 1px 5px 0px #888888;
+}
+
+.window-button {
+    position: relative;
+    margin: 0 auto; 
+    width: 368px; 
+    text-align: center;
+}
+
+.window-body-loader {
+    margin: 15px;
+    width: 90%;
+    height: 6px;
+    background-image: linear-gradient(to right, red 80%, rgb(226, 223, 223) 20%);
+}
+
+.window-dialog-text {
+    padding: 14px;
+}
+.window-dialog-text span {
+    font-weight: bold;
+} 
+
+.window-body-text .window-body-span {
+    color: red;
+    font-weight: bold;
+}
+.window-body-text {
+    padding: 5px 10px;
+}
+
+.window-body-why {
+    color: rgb(86, 188, 235);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+.window-main {
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.window-main .button {
+    background-color: #0000ff;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 11px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.window-button-item {
+    position: relative;
+    margin-top: 25px;
+    width: 46%;
+    height: 40px;
+    box-shadow: 1px 2px 5px 0px #888888;
+    color: #888888;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.input {
+    height: 30px;
+    width: 45%;
+    color: #888888;
+}
