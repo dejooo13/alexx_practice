@@ -85,33 +85,45 @@ stanje.withdraw(220);
 
 
 function canWithdraw(amount, banknote) {
-
-    total = banknote[3] * 100 + banknote[2] * 50 + banknote[1] * 20 + banknote[0] * 10;
-
-    if (amount > total) {
-        console.log(false)
-        return false
+    var rest = remainder(amount, 100, banknote[3])
+    if(rest == 0){
+        return true;
     } else {
-        if (Math.trunc(amount / 100) <= banknote[3]) {
-            amount %= 100
-        }
-        if (Math.trunc(amount / 50) <= banknote[2]) {
-            amount %= 50
-        }
-        if (Math.trunc(amount / 20) <= banknote[1]) {
-            amount %= 20
-        }
-        if (Math.trunc(amount / 10) <= banknote[0]) {
-            amount %= 10
-        }
-
-        if (amount > 0) {
-            console.log(false);
-            return false
-        } else {
-            console.log(true)
+        rest = remainder(rest, 50, banknote[2])
+        if(rest ==0){
+            return true
+        }else{
+            rest = remainder(rest, 20, banknote[1])
+            if(rest == 0){
+                return true
+            }else{
+                rest = remainder(rest, 10, banknote[0])
+                if(rest == 0){
+                    return true
+                }else{
+                    console.log("Ne mozemo isplatiti dati iznos")
+                    return false
+                }
+            }
         }
     }
 }
 
-canWithdraw(260, [4, 2, 1, 3])
+function remainder(sum, novcanice, koliko){
+    var manji = Math.min(Math.floor(sum/novcanice), koliko);
+    return sum-(novcanice*manji)
+}
+
+if (canWithdraw(110, [1, 1, 3, 1]) != true) { console.log('Test 1 failed') }else{console.log(true)}
+if (canWithdraw(210, [1, 1, 2, 1]) != true) { console.log('Test 2 failed') }else{console.log(true)}
+if (canWithdraw(212, [1, 1, 2, 0]) != false) { console.log('Test 3 failed') }else{console.log(true)}
+if (canWithdraw(212, [1, 1, 2, 1]) != false) { console.log('Test 4 failed') }else{console.log(true)}
+if (canWithdraw(13, [1, 1, 2, 0]) != false) { console.log('Test 5 failed') }else{console.log(true)}
+if (canWithdraw(590, [1, 1, 2, 6]) != false) { console.log('Test 6 failed') }else{console.log(true)}
+if (canWithdraw(590, [1, 4, 2, 9]) != true) { console.log('Test 7 failed') }else{console.log(true)}
+if (canWithdraw(1273, [4, 7, 2, 10]) != false) { console.log('Test 8 failed') }else{console.log(true)}
+if (canWithdraw(70, [8, 0, 0, 0]) != true) { console.log('Test 9 failed') }else{console.log(true)}
+if (canWithdraw(70, [7, 0, 0, 0]) != true) { console.log('Test 10 failed') }else{console.log(true)}
+if (canWithdraw(110, [0, 0, 0, 1]) != false) { console.log('Test 11 failed') }else{console.log(true)}
+if (canWithdraw(70, [0, 0, 0, 10]) != false) { console.log('Test 12 failed') }else{console.log(true)}
+ 
