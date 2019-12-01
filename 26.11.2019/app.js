@@ -50,7 +50,7 @@
   stanje.withdraw(30);  */
 
 
-class Wallet {
+/* class Wallet {
     constructor(amount) {
         this.amount = amount;
     }
@@ -73,7 +73,7 @@ class Wallet {
 var stanje = new Wallet(200);
 stanje.deposit(10);
 stanje.withdraw(20);
-stanje.withdraw(220);
+stanje.withdraw(220); */
 
 /* У банкомату се налазе новчанице од 10, 20, 50 и 100 КМ. Уколико клијент жели одређену суму,банкомат 
 прво одредити да ли је ту суму могуће уплатити помоћу новчаница које има.Нпр.Ако има 1х10, 1х20, 1х50 и
@@ -83,36 +83,104 @@ stanje.withdraw(220);
 представља да ли jе могуће исплатити суму amount, помоћу новчаница у низу banknotes. У том низу се 
 налазе 4 броја, кoја представљају количину новчаница од 10, 20, 50 и 100 КМ, респективно. */
 
-
-function canWithdraw(amount, banknote) {
-    var rest = remainder(amount, 100, banknote[3])
-    if(rest == 0){
+/* function canWithdraw(amount, banknote) {
+    var money = [10, 20, 50, 100];
+    i = banknote.length - 1;
+    while(i >= 0){
+        amount = remainder(amount, money[i], banknote[i]);
+        i--;
+    }
+    if(amount == 0){
+        console.log(true)
         return true;
-    } else {
-        rest = remainder(rest, 50, banknote[2])
-        if(rest ==0){
-            return true
-        }else{
-            rest = remainder(rest, 20, banknote[1])
-            if(rest == 0){
-                return true
-            }else{
-                rest = remainder(rest, 10, banknote[0])
-                if(rest == 0){
-                    return true
-                }else{
-                    console.log("Ne mozemo isplatiti dati iznos")
-                    return false
-                }
-            }
-        }
+    }else{
+        console.log("Ne mozemo da isplatimo dati iznos")
+        return false;
     }
 }
 
 function remainder(sum, novcanice, koliko){
     var manji = Math.min(Math.floor(sum/novcanice), koliko);
     return sum-(novcanice*manji)
+} */
+///////////Moje rijesenje///////////////
+function canWithdraw(amount, banknote) {
+    var money = [10, 20, 50, 100];
+    i = banknote.length - 1;
+    function recursive(amount, i) {
+        let remainingAmount = remainder(amount, money[i], banknote[i]);
+        if(remainingAmount == 0){
+            return true;
+        }else if(i==0){
+            return false
+        } else if(recursive(remainingAmount, i-1) == true) {
+            return true;
+        } else {
+          return recursive(amount, i-1);
+       }
+    }
+
+    amount = recursive(amount, banknote.length - 1);
+    if(amount == true){
+        return true;
+    }else{ 
+        console.log("Ne mozemo da isplatimo dati iznos")
+        return false;
+    }
 }
+
+function remainder(sum, novcanice, koliko){
+    var less_of = Math.min(Math.floor(sum/novcanice), koliko);
+    return sum-(novcanice*less_of)
+}
+
+//////////////Markovo rijesenje///////////////////
+/* function canWithdraw(amount, banknotes) {
+    var money = [10, 20, 50, 100];
+
+    function recursive(amount, i) {
+        // Dosli smo do kraja, nema dalje, vracamo false.
+        if(i < 0){
+            return false;
+        } else {
+          // Nismo dosli do kraja, i je makar 0, a 0 je prva novcanica od 10.
+          // Za trenutno i, probamo maks broj novcanica, pa za jedan manje,
+          // pa za dva manje, pa sve tako do nule. Nula znaci da trenutnu novcanicu
+          // uopste ne iskoristavamo, preskacemo je. Na taj nacin probavamo, sve
+          // komabinacije, da uopste ne iskoristimo novacnicu, da iskoristimo samo neke,
+          // ili da iskoristimo sve.
+          for (let j = banknotes[i]; j >= 0; --j) {
+            // j znaci koliko novcanica koristimo (od maks raspolizvog broja, do 0).
+            // remaining ce sadrzati koliko nam ostaje sume nakon sto iskoritimo j novacanica.
+            // Ako je remaining manje od 0, znace uopste ne moze iskoristiti j novcanica,
+            // pa nastavljamo dalje, probamo manje j.
+            let remaining = amount - j * money[i];
+            if (remaining < 0) {
+              continue;
+            } else if (remaining == 0) {
+              // Ako je remaining 0 znaci da sa j novcanica ubadamo tacno sumu koja treba.
+              return true;
+            } else {
+              // remaining je vece od 0, probavamo da to sto je ostalo
+              // iskombinujemo sa ostalim novcanicama.
+              // Pozivamo rekurzivno za sledecu novacnicu.
+              let success = recursive(remaining, i - 1);
+              if (success == true) {
+                // Ako je rekurzivni poziv uspio, to je to,
+                // nema potrebe dalje da trazimo.
+                return true;
+              }
+            }
+          }
+          // Ako je citava for petlja prosla bez da smo vratili true,
+          // onda smo dosli ovde, a to je kraj pretrage, nismo nasli kombinaciju,
+          // vracamo false.
+          return false;
+        }
+    }
+
+    return recursive(amount, banknotes.length - 1);
+} */
 
 if (canWithdraw(110, [1, 1, 3, 1]) != true) { console.log('Test 1 failed') }else{console.log(true)}
 if (canWithdraw(210, [1, 1, 2, 1]) != true) { console.log('Test 2 failed') }else{console.log(true)}
@@ -124,6 +192,7 @@ if (canWithdraw(590, [1, 4, 2, 9]) != true) { console.log('Test 7 failed') }else
 if (canWithdraw(1273, [4, 7, 2, 10]) != false) { console.log('Test 8 failed') }else{console.log(true)}
 if (canWithdraw(70, [8, 0, 0, 0]) != true) { console.log('Test 9 failed') }else{console.log(true)}
 if (canWithdraw(70, [7, 0, 0, 0]) != true) { console.log('Test 10 failed') }else{console.log(true)}
-if (canWithdraw(110, [0, 0, 0, 1]) != false) { console.log('Test 11 failed') }else{console.log(true)}
+if (canWithdraw(110, [0, 3, 1, 1]) != true) { console.log('Test 11 failed') }else{console.log(true)}
 if (canWithdraw(70, [0, 0, 0, 10]) != false) { console.log('Test 12 failed') }else{console.log(true)}
+if (canWithdraw(110, [0, 3, 2, 0]) != true) { console.log('Test 13 failed') }else{console.log(true)}
  
