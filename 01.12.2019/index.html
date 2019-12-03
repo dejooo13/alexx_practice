@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,87 @@
     <title>Document</title>
     <link rel="stylesheet" href="custom.css">
 </head>
+
 <body>
-    <ol>
+    <!--     <ol>
         <li>
-            Napraviti kartice upotrebom html- i css-a, stim da se umjestom hover efekta i promjene koristi klik ( znaci tek kada se selektuje jedna od opcija onda da se uradi ova animacija sa karticom i progress bar napuni)
+            Napraviti kartice upotrebom html- i css-a, stim da se umjestom hover efekta i promjene
+            koristi klik (znaci tek kada se selektuje jedna od opcija onda da se uradi ova animacija
+            sa karticom i progress bar napuni)
         </li>
-    </ol>
-    <br>
-    <video src="./prices.mp4" controls></video>
+    </ol> -->
+    <div class="wrap">
+        <div class="basic card">
+            <div class="basic-title title">Basic</div>
+            <div class="basic-price price">
+                <p class="dolar">$5</p>
+                <p>per month</p>
+            </div>
+            <div class="content">
+                <div class="line-odd line"></div>
+                <div class="line-even line"></div>
+                <div class="line-odd line"></div>
+                <div class="line-even line"></div>
+            </div>
+        </div>
+        <div class="pro card">
+            <div class="pro-title title">Pro</div>
+            <div class="pro-price price">
+                <p class="dolar">$10</p>
+                <p>per month</p>
+            </div>
+            <div class="content">
+                <div class="line-odd line"></div>
+                <div class="line-even line"></div>
+                <div class="line-odd line"></div>
+                <div class="line-even line"></div>
+            </div>
+        </div>
+        <div class="premium card">
+            <div class="premium-title title">Premium</div>
+            <div class="premium-price price">
+                <p class="dolar">$20</p>
+                <p>per month</p>
+            </div>
+            <div class="content">
+                <div class="line-odd line"></div>
+                <div class="line-even line"></div>
+                <div class="line-odd line"></div>
+                <div class="line-even line"></div>
+            </div>
+        </div>
+        <div class="offer">
+            <div class="offer-first">
+                <div class="offer-text">
+                    <div>5 Users</div>
+                    <div>100 Users</div>
+                </div>
+                <div class="loader">
+                    <div class="loader-color loader-color1"></div>
+                </div>
+            </div>
+            <div class="offer-second">
+                <div class="offer-text">
+                    <div>20GB</div>
+                    <div>200GB</div>
+                </div>
+                <div class="loader">
+                    <div class="loader-color loader-color2"></div>
+                </div>
+            </div>
+            <div class="offer-third">
+                <div class="offer-text">
+                    <div>1 Project</div>
+                    <div>50 Projects</div>
+                </div>
+                <div class="loader">
+                    <div class="loader-color loader-color3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="./app.js"></script>
 </body>
+
 </html>
